@@ -7,16 +7,27 @@ import { databaseConfig } from './configs/database.config';
 import { AuthModule } from './auth/auth.module';
 import { OtpModule } from './otp/otp.module';
 import { UsersModule } from './users/users.module';
+import { BullModule, BullRootModuleOptions } from '@nestjs/bullmq';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal:true
+      isGlobal: true
     }),
     TypeOrmModule.forRootAsync({
-      imports:[ConfigModule],
-      inject:[ConfigService],
+      imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory: (configService: ConfigService) => databaseConfig(configService)
+    }),
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService): BullRootModuleOptions => ({
+        connection: {
+          host: configService.get('REDIS_HOST'),
+          port: configService.get('REDIS_PORT')
+        }
+      })
     }),
     AuthModule,
     OtpModule,
@@ -25,4 +36,4 @@ import { UsersModule } from './users/users.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
