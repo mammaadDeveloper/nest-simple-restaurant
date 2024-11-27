@@ -6,6 +6,8 @@ import { User } from 'src/users/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersService } from 'src/users/users.service';
+import { OtpModule } from 'src/otp/otp.module';
+import { OtpService } from 'src/otp/otp.service';
 
 @Module({
   imports:[
@@ -20,8 +22,9 @@ import { UsersService } from 'src/users/users.service';
         }
       })
     }),
+    OtpModule
   ],
-  providers: [AuthService, UsersService],
+  providers: [AuthService, UsersService, OtpService],
   controllers: [AuthController]
 })
 export class AuthModule {}

@@ -24,6 +24,11 @@ export class UsersService {
   async findByEmail(email: string): Promise<User> | undefined {
     return await this.userRepo.findOneOrFail({ where: { email } });
   }
+
+  async findByPhonenumber(phonenumber: string): Promise<User> | undefined {
+    return await this.userRepo.findOne({ where: { phonenumber } });
+  }
+  
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
