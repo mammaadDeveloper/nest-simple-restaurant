@@ -9,6 +9,7 @@ import { SmsService } from './sms/sms.service';
       name:'otpQueue'
     })
   ],
-  providers: [OtpService, SmsService]
+  providers: [OtpService, SmsService],
+  exports:[OtpService]
 })
 export class OtpModule {}

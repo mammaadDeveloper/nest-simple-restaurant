@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersService } from 'src/users/users.service';
 import { OtpModule } from 'src/otp/otp.module';
 import { OtpService } from 'src/otp/otp.service';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports:[
@@ -21,6 +22,9 @@ import { OtpService } from 'src/otp/otp.service';
           expiresIn:'1h'
         }
       })
+    }),
+    BullModule.registerQueue({
+      name:'otpQueue'
     }),
     OtpModule
   ],
