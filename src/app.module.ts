@@ -8,6 +8,10 @@ import { AuthModule } from './auth/auth.module';
 import { OtpModule } from './otp/otp.module';
 import { UsersModule } from './users/users.module';
 import { BullModule, BullRootModuleOptions } from '@nestjs/bullmq';
+import { MenuModule } from './menu/menu.module';
+import { OrdersModule } from './orders/orders.module';
+import { OrderModule } from './order.module';
+import { PaymentModule } from './payment.module';
 
 @Module({
   imports: [
@@ -32,6 +36,10 @@ import { BullModule, BullRootModuleOptions } from '@nestjs/bullmq';
     AuthModule,
     OtpModule,
     UsersModule,
+    MenuModule,
+    OrdersModule,
+    OrderModule,
+    PaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
