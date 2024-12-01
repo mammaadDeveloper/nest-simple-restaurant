@@ -23,7 +23,7 @@ async function bootstrap() {
     .addTag('menu, order, payment')
     .build();
 
-    const documentFactory = () => SwaggerModule.createDocument(app, config);
+    const documentFactory = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, documentFactory);
 
   app.enableVersioning({
